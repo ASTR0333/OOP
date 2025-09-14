@@ -67,7 +67,7 @@ int main()
             std::format("{} лет", person.years),
             std::format("{} мес", person.months),
             std::format("{} мес", total_months),
-            std::format("{} дней", approx_days));
+            std::format("{} дней", approx_days)) << std::endl;
     }
 
     return 0;
@@ -114,3 +114,4 @@ int main()
 //
 //     return 0;
 // }
+
