@@ -1,65 +1,77 @@
-﻿// 1 задание
+#include <iostream>
+#include <string>
+#include <vector>
+#include <windows.h>
+#include <format>
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    struct Person {
+        std::string family;
+        std::string name;
+        int years;
+        int months;
+    };
+
+    std::vector<Person> people;
+
+    for (int i = 0; i < 3; i++) {
+        Person person;
+
+        std::cout << "Человек " << i + 1 << ":\n";
+        std::cout << "Фамилия: ";
+        std::cin >> person.family;
+        std::cout << "Имя: ";
+        std::cin >> person.name;
+        std::cout << "Лет: ";
+        std::cin >> person.years;
+        std::cout << "Месяцев: ";
+        std::cin >> person.months;
+        std::cout << "-------------------\n";
+
+        people.push_back(person);
+    }
+
+    int max_family = 8, max_name = 3;
+    for (const auto& person : people) {
+        max_family = std::max<int>(max_family, static_cast<int>(person.family.length()));
+        max_name = std::max<int>(max_name, static_cast<int>(person.name.length()));
+    }
+
+    max_family += 2;
+    max_name += 2;
+
+    std::cout << "\n" << std::string(80, '=') << "\n";
+
+    std::cout << std::format("{:<{}} {:<{}} {:<12} {:<15} {:<15} {:<15}\n",
+        "ФАМИЛИЯ", max_family,
+        "ИМЯ", max_name,
+        "ЛЕТ",
+        "МЕСЯЦЕВ",
+        "ВСЕГО МЕСЯЦЕВ",
+        "ВСЕГО ДНЕЙ");
+
+    std::cout << std::string(max_family + max_name + 60, '-') << "\n";
 
 
+    for (auto person : people) {
+        int total_months = person.years * 12 + person.months;
+        int approx_days = total_months * 30; 
 
-//#include <iostream>
-//#include <windows.h>
-//#include <string>
-//
-//
-//int main()
-//{
-//    SetConsoleCP(1251); SetConsoleOutputCP(1251);
-//    std::string familia1;
-//    std::string imya1;
-//    int goda1;
-//    int mesyaca1;
-//    std::string familia2;
-//    std::string imya2;
-//    int goda2;
-//    int mesyaca2;
-//    std::string familia3;
-//    std::string imya3;
-//    int goda3;
-//    int mesyaca3;
-//
-//    std::cout << "Введи фамилию, имя и возраст : ";
-//    std::cin >> familia1 >> imya1 >> goda1 >> mesyaca1;
-//    std::cout << "\n";
-//    std::cout << "Введи фамилию, имя и возраст : ";
-//    std::cin >> familia2 >> imya2 >> goda2 >> mesyaca2;
-//    std::cout << "\n";
-//    std::cout << "Введи фамилию, имя и возраст : ";
-//    std::cin >> familia3 >> imya3 >> goda3 >> mesyaca3;
-//    std::cout << "\n";
-//
-//    familia1 += std::string(15 - familia1.length(), ' ');
-//    imya1 += std::string(15 - imya1.length(), ' ');
-//    std::string godaStr1 = std::to_string(goda1) + std::string(10 - std::to_string(goda1).length(), ' ');
-//    std::string mesyacaStr1 = std::to_string(mesyaca1) + std::string(10 - std::to_string(mesyaca1).length(), ' ');
-//    std::string totalMonths1 = std::to_string(goda1 * 12 + mesyaca1) + std::string(15 - std::to_string(goda1 * 12 + mesyaca1).length(), ' ');
-//
-//    familia2 += std::string(15 - familia2.length(), ' ');
-//    imya2 += std::string(15 - imya2.length(), ' ');
-//    std::string godaStr2 = std::to_string(goda2) + std::string(10 - std::to_string(goda2).length(), ' ');
-//    std::string mesyacaStr2 = std::to_string(mesyaca2) + std::string(10 - std::to_string(mesyaca2).length(), ' ');
-//    std::string totalMonths2 = std::to_string(goda2 * 12 + mesyaca2) + std::string(15 - std::to_string(goda2 * 12 + mesyaca2).length(), ' ');
-//
-//    familia3 += std::string(15 - familia3.length(), ' ');
-//    imya3 += std::string(15 - imya3.length(), ' ');
-//    std::string godaStr3 = std::to_string(goda3) + std::string(10 - std::to_string(goda3).length(), ' ');
-//    std::string mesyacaStr3 = std::to_string(mesyaca3) + std::string(10 - std::to_string(mesyaca3).length(), ' ');
-//    std::string totalMonths3 = std::to_string(goda3 * 12 + mesyaca3) + std::string(15 - std::to_string(goda3 * 12 + mesyaca3).length(), ' ');
-//
-//    std::cout << familia1 << imya1 << godaStr1 << mesyacaStr1 << totalMonths1 << (goda1 * 12 + mesyaca1) * 30 << "\n";
-//    std::cout << "\n";
-//    std::cout << familia2 << imya2 << godaStr2 << mesyacaStr2 << totalMonths2 << (goda2 * 12 + mesyaca2) * 30 << "\n";
-//    std::cout << "\n";
-//    std::cout << familia3 << imya3 << godaStr3 << mesyacaStr3 << totalMonths3 << (goda3 * 12 + mesyaca3) * 30 << std::endl;
-//
-//    return 0;
-//}
+        std::cout << std::format("{:<{}} {:<{}} {:<12} {:<15} {:<15} {:<15}\n",
+            person.family, max_family,
+            person.name, max_name,
+            std::format("{} лет", person.years),
+            std::format("{} мес", person.months),
+            std::format("{} мес", total_months),
+            std::format("{} дней", approx_days));
+    }
 
+    return 0;
+}
 
 //2 задание
 
@@ -102,4 +114,3 @@
 //
 //     return 0;
 // }
-
