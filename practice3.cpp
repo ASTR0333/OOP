@@ -124,25 +124,22 @@
 //}
 
 //задание 3
-//#include <iostream>
-//#include <string>
+// #include <iostream>
+// #include <string>
 //
-//using namespace std;
+// int main() {
+//     using namespace std;
+//     setlocale(LC_ALL, "");
+//     string str;
+//     cout << "Введите строку: ";
+//     getline(cin, str);
+//     int count = 0;
+//     for (char c : str) {
+//         if (c == 'G' || c == 'g') {
+//             count++;
+//         }
+//     }
 //
-//int main() {
-//    string str;
-//    
-//    cout << "Введите строку: ";
-//    getline(cin, str);
-//    
-//    int count = 0;
-//    for (char c : str) {
-//        if (c == 'G' || c == 'g') {  
-//            count++;
-//        }
-//    }
-//    
-//    cout << "Буква G встречается " << count << " раз(а)" << endl;
-//    
-//    return 0;
-//}
+//     cout << "Буква G встречается " << count << " раз(а)" << endl;
+//     return 0;
+// }
